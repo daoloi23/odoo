@@ -37,8 +37,6 @@ If you believe you have found a security issue, check our [Responsible Disclosur
 for details and get in touch with us via email.
 
 ## Cài môi trường ảo venv
-Trong pychamr, -> file -> settings -> interpreter -> add interpreter 
--> add local interpreter, chọn type virtualenv, địa chỉ thư mục, bấm ok
 ![img_4.png](image/img_4.png)
 ![img_5.png](image/img_5.png)
 ![img_6.png](image/img_6.png)
