@@ -19,10 +19,8 @@ class PropertyType(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         res = super().create(vals_list)
-        for val in vals_list:
-            name = val.get('name')
-            if name:  # chỉ tạo nếu có name
-                self.env['estate.property.tag'].create({'name': name})
+        for record in res:
+            self.env['estate.property.tag'].create({'name': record.name})
         return res
 
     def unlink(self):

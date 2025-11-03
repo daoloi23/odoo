@@ -1,6 +1,6 @@
 from datetime import timedelta,date
 from odoo import fields,models,api,_
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError,ValidationError
 
 
 class EstateProperty(models.Model):
@@ -82,13 +82,20 @@ class EstateProperty(models.Model):
 
     @api.onchange('date_availability')
     def _onchange_date_availability(self):
-        for estate in self:
-            return {
-                'warning':{
-                    'title':_('Warning'),
-                    'message':_('My message')
-                }
+        for record in self:
+            warning = {
+                'title': _('Warning'),
+                'message': _('Thông báo này hiện ra khi availability date thay đổi.')
             }
+
+            # bài tập chapter 9
+            if record.date_availability and record.date_availability < date.today():
+                warning = {
+                    'title': _('Invalid Date'),
+                    'message': _('không được chọn ngày trong quá khứ')
+                }
+
+            return {'warning': warning}
 
     def action_cancel(self):
         for record in self:
